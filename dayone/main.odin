@@ -49,25 +49,40 @@ main :: proc() {
 	fmt.printfln("Left Array Legnth: %i", len(leftArr))
 	fmt.printfln("Right Array Legnth: %i", len(rightArr))
 
-	fmt.println("Processing Order for Left Array...")
-	currentIndex: int
+	fmt.println("Processing Order for Left & Right Array...")
+
+	leftArrSorted := sort(leftArr)
+	rightArrSorted := sort(rightArr)
+
+	if len(leftArrSorted) == len(rightArrSorted) {
+		fmt.println("Finding the total distance between the left list and the right list...")
+		totalDistance: int
+		for i := 0; i < len(leftArrSorted); i += 1 {
+			fmt.printfln("%i   %i", leftArrSorted[i], rightArrSorted[i])
+			// totalDistance = totalDistance + (leftArrSorted[i] - rightArrSorted[i])
+		}
+		fmt.printfln("Total Distance: %i", totalDistance)
+	} else {
+		fmt.println("Sorting failed")
+	}
+
+}
+
+sort :: proc(array: [dynamic]int) -> [dynamic]int {
 	currentValue: int
+	position: int
+	a := array
 
 	// Loop through and order them smallest to largest.
-	for n in leftArr {
-		if n != currentValue {
-
+	for i := 1; i < len(a); i += 1 {
+		currentValue = a[i]
+		position = i
+		for position > 0 && a[position - 1] > currentValue {
+			a[position] = a[position - 1]
+			position -= 1
 		}
-		currentValue = n
-		currentIndex += 1
+		a[position] = currentValue
 	}
 
-	currentIndex = 0
-	for n in rightArr {
-		if n != currentValue {
-
-		}
-		currentValue = n
-		currentIndex += 1
-	}
+	return a
 }
