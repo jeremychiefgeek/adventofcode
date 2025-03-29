@@ -66,14 +66,30 @@ main :: proc() {
 			totalDistance += abs(sum)
 		}
 		fmt.printfln("Total Distance: %i", totalDistance)
+		fmt.println("Part Two...")
+		dupCount: int
+		partTwoSolution: int
+		for n in leftArrSorted {
+			dupCount = duplicate_count(n, rightArrSorted)
+			partTwoSolution += n * dupCount
+		}
+
+		fmt.printfln("Part Two Solution: %i", partTwoSolution)
 	} else {
 		fmt.println("Sorting failed")
 	}
 
 }
 
-duplicate_count :: proc(array: [dynamic]int) {
+duplicate_count :: proc(n: int, array: [dynamic]int) -> int {
 
+	count: int
+	for val in array {
+		if (n == val) {
+			count += 1
+		}
+	}
+	return count
 }
 
 sort :: proc(array: [dynamic]int) -> [dynamic]int {
