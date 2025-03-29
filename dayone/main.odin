@@ -57,14 +57,22 @@ main :: proc() {
 	if len(leftArrSorted) == len(rightArrSorted) {
 		fmt.println("Finding the total distance between the left list and the right list...")
 		totalDistance: int
+		sum: int
 		for i := 0; i < len(leftArrSorted); i += 1 {
-			fmt.printfln("%i   %i", leftArrSorted[i], rightArrSorted[i])
+			sum = 0
+			// fmt.printfln("%i   %i", leftArrSorted[i], rightArrSorted[i])
 			// totalDistance = totalDistance + (leftArrSorted[i] - rightArrSorted[i])
+			sum = leftArrSorted[i] - rightArrSorted[i]
+			totalDistance += abs(sum)
 		}
 		fmt.printfln("Total Distance: %i", totalDistance)
 	} else {
 		fmt.println("Sorting failed")
 	}
+
+}
+
+duplicate_count :: proc(array: [dynamic]int) {
 
 }
 
