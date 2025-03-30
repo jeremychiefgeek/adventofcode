@@ -15,7 +15,13 @@ For now, everything is in one repo, but eventually I plan to split the code **by
 Example future structure:
 
 ```
-/ ├── 2024/ │ ├── dayone/ │ ├── daytwo/ │ └── ... ├── 2025/ │ └── ... └── README.md
+├── 2024
+    ├── dayone
+    ├── daytwo
+  │ └── ...
+  ├── 2025
+  │ └── ...
+└── README.md
 ```
 
 ## 🚀 Why I'm Doing This
@@ -25,7 +31,3 @@ Example future structure:
 - Just for fun — because puzzles are fun 🙂
 
 Feel free to browse, borrow ideas, or follow along!
-
-```
-
-```

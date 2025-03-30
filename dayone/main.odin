@@ -78,7 +78,6 @@ main :: proc() {
 	} else {
 		fmt.println("Sorting failed")
 	}
-
 }
 
 duplicate_count :: proc(n: int, array: [dynamic]int) -> int {

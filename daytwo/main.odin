@@ -11,6 +11,7 @@ main :: proc() {
 	inputData, ok := get_input_data()
 	if ok {
 		currentIterationArr: []string
+		checkSolutionTwoArr: [dynamic]string
 		isSafe: bool
 		for line in inputData {
 			currentIterationArr = strings.split(line, " ")
@@ -18,6 +19,16 @@ main :: proc() {
 			isSafe = is_line_safe(lineIntArray)
 			if isSafe {
 				safeCount += 1
+			} else {
+				for i := 0; i < len(lineIntArray); i += 1 {
+					testArr := convert_to_int_array(currentIterationArr, i, true)
+					isSafe = is_line_safe(testArr)
+					if isSafe {
+						// fmt.printfln("%s is safe %b", line, isSafe)
+						safeCount += 1
+						break
+					}
+				}
 			}
 			// fmt.printfln("%s is safe %b", line, isSafe)
 		}
@@ -36,7 +47,8 @@ is_line_safe :: proc(arr: [dynamic]int) -> bool {
 			if arr[position - 1] > arr[position] {
 				if direction == "" || direction == "increasing" {
 					direction = "increasing"
-					if abs(arr[position - 1] - arr[position]) > 3 {
+					if abs(arr[position - 1] - arr[position]) > 3 ||
+					   abs(arr[position - 1] - arr[position]) == 0 {
 						return false
 					}
 				} else {
@@ -59,12 +71,19 @@ is_line_safe :: proc(arr: [dynamic]int) -> bool {
 	return true
 }
 
-convert_to_int_array :: proc(strArr: []string) -> [dynamic]int {
+convert_to_int_array :: proc(
+	strArr: []string,
+	index: int = 0,
+	skipIndex: bool = false,
+) -> [dynamic]int {
 	intArr: [dynamic]int
 	for str in strArr {
 		if n, ok := strconv.parse_int(str); ok {
 			append(&intArr, n)
 		}
+	}
+	if skipIndex {
+		ordered_remove(&intArr, index)
 	}
 	return intArr
 }
