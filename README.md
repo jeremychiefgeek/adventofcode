@@ -16,11 +16,11 @@ Example future structure:
 
 ```
 ├── 2024
-    ├── dayone
-    ├── daytwo
-  │ └── ...
-  ├── 2025
-  │ └── ...
+  ├── dayone
+  ├── daytwo
+│ └── ...
+├── 2025
+│ └── ...
 └── README.md
 ```
 
